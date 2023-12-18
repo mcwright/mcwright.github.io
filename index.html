@@ -2421,6 +2421,7 @@ function getUserLocation() {
                         closestHydrants.forEach(hydrant => {
                             const listItem = document.createElement('li');
                             listItem.style.marginBottom = "3rem"; // Add 3rem space below each item
+                            listItem.style.color = "#b0000"
                             listItem.innerHTML = `#${hydrant.properties.name} at ${hydrant.distance.toFixed(2)} km<br>${hydrant.properties.description}`;
                             closestHydrantsList.appendChild(listItem);
                         });
