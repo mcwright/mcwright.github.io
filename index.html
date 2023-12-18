@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Find Nearest Hydrant</title>
+    <title>Find Nearest Hydrant - build 5</title>
     <script>
         window.closestHydrants = [];
         const hydrants = [
@@ -1762,17 +1762,23 @@
     const userLocation = { x: canvas.width / 2, y: canvas.height / 2 };
 
     function latLonToRadarCoords(lat, lon, userLat, userLon) {
-        // Adjust scale factor for mobile display
-        const scale = window.innerWidth < 600 ? 0.1 : 0.5;
+    // Adjust scale factor for mobile display. This value may need to be fine-tuned
+    const scale = window.innerWidth < 600 ? 0.05 : 0.1; // Reduced for mobile
 
-        const latDiff = (lat - userLat) * 111320; // Convert latitude difference to meters
-        const lonDiff = (lon - userLon) * 111320 * Math.cos((userLat * Math.PI) / 180);
+    const latDiff = (lat - userLat) * 111320; // Convert latitude difference to meters
+    const lonDiff = (lon - userLon) * 111320 * Math.cos(userLat * Math.PI / 180);
 
-        const x = lonDiff * scale;
-        const y = latDiff * scale;
+    const x = lonDiff * scale;
+    const y = latDiff * scale;
 
-        return { x, y };
-      }
+    // Debugging logs
+    console.log(`User coordinates: (${userLat}, ${userLon})`);
+    console.log(`Hydrant coordinates: (${lat}, ${lon})`);
+    console.log(`Canvas coordinates: (${x}, ${y}), Scale: ${scale}`);
+
+    return { x, y };
+}
+
       // Function to calculate the distance between two coordinates
       function calculateDistance(lat1, lon1, lat2, lon2) {
         const R = 6371; // Earth's radius in kilometers
@@ -1852,7 +1858,7 @@
 
       hydrants.forEach(hydrant => {
         const listItem = document.createElement("li");
-        listItem.innerHTML = `<h2 style="color: darkred; font-size: 1.2em; font-weight: normal; margin-top: 0.5em; margin-bottom: 0.5em;">${hydrant.distance.toFixed(2)}km => ${hydrant.properties.hydrant_location} at ${hydrant.properties.flow_rate} </h2>`;
+        listItem.innerHTML = `<p class="hyrdrantInfo" ">${hydrant.distance.toFixed(2)}km => ${hydrant.properties.hydrant_location} at ${hydrant.properties.flow_rate} </p>`;
         closestHydrantsList.appendChild(listItem);
       });
     }
