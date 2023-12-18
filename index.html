@@ -1,0 +1,2439 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find Nearest Hydrant</title>
+    <script>
+        const hydrants = 
+   [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.074172735214230000,
+                    46.219692758979510000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196492",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Hollis Ave.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>21 Hollis Avenue, Stratford, Prince Edward Island, </label></p><p class=half-width><label>Main Located on:</label><span>Hollis Ave.</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.070331811904910000,
+                    46.220635500929006000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196493",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Hollis Ave.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label> Hollis Avenue, Stratford, Prince Edward Island, Canada</label></p><p class=half-width><label>Main Located on:</label><span>Hollis Ave.</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.067080974578860000,
+                    46.219848646560614000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196497",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Hollis Ave</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>19 Dewar Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.067713975906370000,
+                    46.221236768836250000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196499",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Hollis Ave</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>31 Dewar Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.060718774795532000,
+                    46.216203730650150000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196505",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Trans Canada Hwy</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>10971 Trans-Canada Highway, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.053659200668335000,
+                    46.216010714101138000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196507",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Trans Canada Hwy</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>10788 Prince Edward Island 1, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.051459789276120000,
+                    46.216018137827106000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196508",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Trans Canada Hwy</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>10788 Prince Edward Island 1, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.078088760375980000,
+                    46.217673603652140000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196511",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Trans Canada Hwy</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.085861802101135000,
+                    46.238166066506544000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196513",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Stagman Way</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>91 Mason Road, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.087422847747781000,
+                    46.237780187149689000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196514",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Mason Road</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>88 Mason Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.088206052780151000,
+                    46.239375632290084000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196515",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Mason Road</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>74 Mason Road, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.088822960853580000,
+                    46.240540648970190000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196516",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Mason Road</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>66 Mason Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.089654445648190000,
+                    46.242076652262390000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196518",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Mason Road/East River Dr.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>60 Mason Road, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.091671466827393000,
+                    46.241631438342537000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196519",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>East River Dr.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>35-39 East River Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.092443943023660000,
+                    46.240355138415850000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196521",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>East River Dr.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>50 East River Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.093109130859375000,
+                    46.239049126362332000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196523",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>East River Dr./ MacDonald</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>6 Macdonald Road, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.094611167907715000,
+                    46.238054755432117000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196524",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>MacDonald Rd</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>24 Macdonald Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.093983530998230000,
+                    46.236351667836590000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196526",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>MacDonald Rd.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>38 Macdonald Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.092443943023680000,
+                    46.237861815701486000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196527",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>East River Dr.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>74 East River Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.091971874237060000,
+                    46.236733846777050000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196528",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>East River Dr.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>90 East River Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.089976310729980000,
+                    46.237624350486360000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196532",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>McCarron Wy</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>7 McCarron Way, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.088597655296326000,
+                    46.237104891745496000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196541",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Starling Cres.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>64 Starling Crescent, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.089949488639830000,
+                    46.239928461760584000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196543",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Starling Cres.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>18-20 Starling Crescent, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.089386224746704000,
+                    46.238822797249530000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196545",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Starling Cres.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>36 Starling Crescent, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.082659244537350000,
+                    46.216612032652890000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196556",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Stratford Rd.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>227 Stratford Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.086028099060060000,
+                    46.216545219805670000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196557",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Stratford Rd @ Nottinghil</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>5 Nottinghill Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.087862730026245000,
+                    46.216931248467760000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196558",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Stratford Rd @ Kinlock</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>66-88 Kinlock Road, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.090190887451170000,
+                    46.216953519269300000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196559",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Stratford Rd.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>194 Stratford Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.093130588531494000,
+                    46.217183650356470000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196560",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Stratford Rd. @ Greensvie</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>200 Stratford Road, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.101080656051636000,
+                    46.220152997229064000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196561",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Stratford Rd. @ John Hami</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>7 John Hamilton Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.098087310791037000,
+                    46.220590962303604000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196562",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Reddin Heights</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>21 Reddin Heights, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.104074001312256000,
+                    46.222075563681750000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196563",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Stratford Rd. @ Quiet Wat</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>2-10 Quiet Water Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.105704784393311000,
+                    46.221800915453116000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196564",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Quiet Water Dr.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>6 Quiet Water Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.107389211654660000,
+                    46.224450842387940000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196565",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Bayside Dr.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>13 Bayside Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.105232715606690000,
+                    46.223938681607520000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196566",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Stratford Rd @ Barkley</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>73 Stratford Road, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.101874589920044000,
+                    46.222305673302017000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "196567",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Barkley Ave.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>35 Barkley Avenue, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.100415468215940000,
+                    46.225007533469040000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196568",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Mutch Dr.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>20 Mutch Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.104717731475830000,
+                    46.227256507964240000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196569",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Harbourview Dr.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>31 Harbourview Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.102529048919680000,
+                    46.226781484723200000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196570",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Stratford Rd @ Sheppard</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>26-32 Stratford Road, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.103451728820800000,
+                    46.227056108035700000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196571",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Sheppard Dr</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>32 Stratford Road, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.104245662689210000,
+                    46.227508862389070000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196572",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Sheppard @ Michael Thomas</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>31 Harbourview Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.103902339935300000,
+                    46.227976457227470000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196573",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Michael Thomas</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>31 Harbourview Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.103591203689575000,
+                    46.228303029037890000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196574",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Michael Thomas</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>24 Stratford Road, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.099600076675415000,
+                    46.228228808342490000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196575",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>St. John Ave.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>1 Saint John Avenue, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.097990751266479000,
+                    46.225608753495962000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196576",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Glen Stewart Dr.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>29 Glen Stewart Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.095952272415161000,
+                    46.224450842387945000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "196577",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Glen Stewart Dr.</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>34 Glen Stewart Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.077146801135981000,
+                    46.216258028385752000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "536881083",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Fire flow Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>273 Stratford Road, Stratford, Prince Edward Island, Canada</label></p><p class=half-width><label>Main Located on:</label><span>Street</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.081586360931375000,
+                    46.225764624279932000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "536881091",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label> Williams Gate, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.077616691589355000,
+                    46.218237786880145000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "536881099",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Crossroads Fire Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>264 Mason Road, Stratford, Prince Edward Island, </label></p><p><label>Notes:</label><span>In front of fire hall</span></p><p class=half-width><label>Main Located on:</label><span>Mason Road</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.076184391975403000,
+                    46.218742577486346000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "536881104",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Hollis Ave. Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>2 Hollis Avenue, Stratford, Prince Edward Island, </label></p><p><label>Notes:</label><span>Next to business park sign</span></p><p class=half-width><label>Main Located on:</label><span>Hollis Ave.</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.070787787437439000,
+                    46.217361815697060000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "536881109",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Business Park Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>34 Myrtle Street, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.077841997146606000,
+                    46.234240359509421000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "536883430",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Cross Roads Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>105 Duffy Road, Stratford, Queens County, Prince Edward Island, </label></p><p class=half-width><label>Cross Street:</label><span>Bunbury Rd.</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.079966306686401000,
+                    46.235394353564004000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "536883459",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>43 Harlandview Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.083662390708923000,
+                    46.236077091032364000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "536883464",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Harlandview Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>2-42 Harlandview Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.084767460823080000,
+                    46.236266326544595000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "536883564",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Harlandview Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>2-42 Harlandview Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.086677193641663000,
+                    46.236043696462467000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "536883581",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Mason & Bunbury</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>61-99 Clifton Road, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.088710308074951000,
+                    46.235865591746489000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "536890130",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Bunbury Rd by Rink</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, </label></p><p><label>Notes:</label><span>12&quot; watermain. 85 PSI</span></p><p class=half-width><label>Cross Street:</label><span>Mason Rd.</span></p><p class=half-width><label>Main Located on:</label><span>Bunbury Rd.</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.085910081863403000,
+                    46.232169788447045000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "536890160",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Nightingale Drive</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>14 Nightingale Drive, Stratford, Prince Edward Island, Canada</label></p><p><label>Notes:</label><span>6&quot; Watermain 60 PSI</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.091065287590030000,
+                    46.235012165294590000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "536890186",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Bunbury at East River</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.093055486679080000,
+                    46.234158725570450000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "536890197",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>MacDonald Rd at Bunbury</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>47-55 Macdonald Road, Stratford, Prince Edward Island, </label></p><p><label>Notes:</label><span>12 Watermain. 90 PSI</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.095018863677979000,
+                    46.232837723131581000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "536890222",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Cross Roads Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, </label></p><p><label>Notes:</label><span>Across from Cotton Park</span></p><p class=half-width><label>Cross Street:</label><span>Hopeton Rd.</span></p><p class=half-width><label>Main Located on:</label><span>Bunbury Rd.</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.095244169235229000,
+                    46.228169431713887000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "536890302",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>355 Shakespeare Drive, Stratford, Prince Edward Island, </label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.112575853119780000,
+                    46.217722376090740000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "537373000",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Cross Roads Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>39 Brandy Lane, Stratford, Prince Edward Island, </label></p><p class=half-width><label>Cross Street:</label><span>Carrington</span></p><p class=half-width><label>Main Located on:</label><span>Brandy</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.095802497955450000,
+                    46.236027592978330000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "537373003",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Cross Roads Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>23 Carriage Lane, Stratford, Prince Edward Island, </label></p><p><label>Notes:</label><span>In Cul- De- Sac</span></p><p class=half-width><label>Main Located on:</label><span>Carriage Lane</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.081463730413816000,
+                    46.218210988416670000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "537373004",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Cross Roads Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>133 Dale Drive, Stratford, Prince Edward Island, Canada</label></p><p class=half-width><label>Main Located on:</label><span>Dale Drive</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.082264101976783000,
+                    46.218585721689593000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "537373005",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Cross Roads Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label> Liegard Drive, Stratford, Prince Edward Island, </label></p><p><label>Notes:</label><span>Across From Apartment Buildings on Liegard</span></p><p class=half-width><label>Cross Street:</label><span>Dale Dr.</span></p><p class=half-width><label>Main Located on:</label><span>Liegard</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.091018402628812000,
+                    46.227685064508080000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "537373006",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Cross Roads Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>8-12 Ducks Landing, Stratford, Prince Edward Island, </label></p><p><label>Notes:</label><span>In front of civic 20 Ducks</span></p><p class=half-width><label>Cross Street:</label><span>Shakespeare</span></p><p class=half-width><label>Main Located on:</label><span>Ducks Ldg.</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.079328155727126000,
+                    46.237090049994933000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "537373007",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Cross Roads Hydrant</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Counterclockwise</span></p><p><label>Hydrant Location:</label></p><p><label>87 Duffy Road, Stratford, Prince Edward Island, </label></p><p><label>Notes:</label><span>Near end of pavement</span></p><p class=half-width><label>Main Located on:</label><span>Duffy Rd.</span></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.070271029133210000,
+                    46.216139056418760000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838677",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Trans Canada Hiighway</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>32 Georgetown Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.081736564636230000,
+                    46.223126195819269000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838678",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Williams Gate</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>5 Williams Gate, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.085475564002991000,
+                    46.237275658254475000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838679",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>5 Harland View Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.082535862922670000,
+                    46.236741354367820000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838680",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>19 Harland View Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.080840706825256000,
+                    46.236652303214257000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838681",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>39 Harland View Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.098087310791016000,
+                    46.232845434965562000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838682",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>7 Horton Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.099517862630100000,
+                    46.232411681405154000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838683",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>9 Horton Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.098573725056860000,
+                    46.232159349520934000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838684",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.098072772370090000,
+                    46.231048107387785000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838685",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>29 Hopeton Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.099274402008760000,
+                    46.230098122419660000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838686",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>1 Hopeton Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.096463446961150000,
+                    46.231923860214216000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838687",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>69 Rankin Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.096845920654644000,
+                    46.230492805753420000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838688",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>7 Holland Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.094743068786970000,
+                    46.231249820911930000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838689",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>81 Rankin Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.097811515900005000,
+                    46.229542811173960000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838690",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>19 Holland Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.096030529114117000,
+                    46.229409216867523000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838691",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>7 Wren Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.093830931093040000,
+                    46.230189893484180000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838692",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>22 Wren Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.091706621553243000,
+                    46.229388332217887000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838693",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>34 Wren Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.093978166580200000,
+                    46.228943015345280000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838694",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>80 Heron Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.092368841171265000,
+                    46.228378942120110000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838695",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>90 Heron Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.090216580552340000,
+                    46.228932745040410000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838696",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>107 Heron Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.088056316417480000,
+                    46.229338842678395000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838697",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>135 Heron Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.086125125926756000,
+                    46.229695093896400000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838698",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>163 Heron Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.085760345500731000,
+                    46.230288840788091000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838699",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>140 Squire Lane, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.084558715862060000,
+                    46.228181010250786000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838700",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>100 Squire Lane, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.085781803172850000,
+                    46.228641177345180000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838701",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>78 Ducks Landing, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.087670078319334000,
+                    46.228195854410810000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838702",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>58 Ducks Landing, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.087831655295034000,
+                    46.226338932194743000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838703",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>234 Shakespeare Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.088754335196160000,
+                    46.225485357597606000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838704",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.087077741456520000,
+                    46.220418135997160000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838705",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.088880185914526000,
+                    46.221219828250725000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838706",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width>Privately Owned by Sobeys</h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>23 Mackinnon Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.077925794554350000,
+                    46.216966330482440000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838719",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>4 Georgetown Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.072456121444700000,
+                    46.219997110512075000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838720",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>31 Hollis Avenue, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.069216012954710000,
+                    46.221043769978660000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838721",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>143 Hollis Avenue, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.068357706069946000,
+                    46.220160420395030000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838722",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label> Autumn Lane, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.065997362136840000,
+                    46.219239940162524000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073838723",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.066780567169190000,
+                    46.218215516599420000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073838724",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.061519582029476000,
+                    46.218235589844110000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073839712",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>22 Macintosh Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.084118366241455000,
+                    46.216478406877090000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073840918",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>222 Stratford Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.084998130798340000,
+                    46.217799803035350000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073840919",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>90 Clarey Way, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.083142042160034000,
+                    46.217658756646760000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073840920",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>217 Stratford Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.090373050706170000,
+                    46.219932962755394000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073840921",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>34 Aintree Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.096079970383855000,
+                    46.217475430926450000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073841052",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>161 Stratford Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.097968245530340000,
+                    46.217683289329760000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073841053",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>151 Stratford Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.099148417496890000,
+                    46.217816912173580000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1073841054",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>152 Stratford Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.104758199272560000,
+                    46.219040050379950000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073842269",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>43 Glencove Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.105895455894874000,
+                    46.217280696082310000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073842270",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>22 Glencove Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.103481467781470000,
+                    46.216382438606885000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073842271",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>8 Glencove Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.101046021995950000,
+                    46.217510825798310000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073842272",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>67 Glencove Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.101915057716774000,
+                    46.216850128216900000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073842274",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>2 Glencove Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.098117049751686000,
+                    46.216857551829410000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073842276",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>5 Mont Rose Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.109093008455773000,
+                    46.217381115628754000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H2.png",
+                "name": "1073842974",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>Out of Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>1 Carrington Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.115202978805293000,
+                    46.219112460714598000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073842975",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>71 Brandy Lane, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.113147725466334000,
+                    46.216669902903070000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073842983",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>14 Demshire Terrace, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.116569571204096000,
+                    46.216735267051142000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1073842986",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>9 Scantlebury Lane, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.092768465871990000,
+                    46.220970132672590000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610707259",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>79 Marion Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.095576684548630000,
+                    46.222485791928140000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1610707260",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>43 Marion Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.094621818139331000,
+                    46.223198381006121000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1610707261",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>61 Glen Stewart Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.092735131433300000,
+                    46.222455803853870000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1610707262",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>63 Marion Drive West, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.088672995959130000,
+                    46.220850655397820000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1610707263",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>23 Mackinnon Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.081227696020505000,
+                    46.218426267436037000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610707264",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>133 Dale Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.067617416381836000,
+                    46.222409593459530000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610707265",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.067266263617228000,
+                    46.218738900299257000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H7.png",
+                "name": "1610707266",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>>= 1500 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.093635098716121000,
+                    46.231154424709622000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610708004",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>95 Rankin Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.092240350028376000,
+                    46.230998569230231000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610708005",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>26 Wren Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.090171197435069000,
+                    46.229631154461295000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610708007",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>107 Heron Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.090653995057750000,
+                    46.230336229001495000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610708009",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>34 Wren Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.091040109108363000,
+                    46.230874539396417000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610708010",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>34 Wren Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.091453638384927000,
+                    46.231562683514426000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610708011",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.091582384417642000,
+                    46.232304840871691000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610708012",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label> , Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.092153817127411000,
+                    46.233079979807819000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610708014",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>74 Bunbury Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.090673237751190000,
+                    46.234007649289260000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610708015",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>84 Bunbury Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.090222626636690000,
+                    46.233146772534390000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610708016",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>84 Bunbury Road, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.088899630469491000,
+                    46.233468752139757000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H3.png",
+                "name": "1610708017",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>In Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>1000-1499 GPM</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>10 Swallow Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.090086075829028000,
+                    46.218803215305286000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H2.png",
+                "name": "1610708020",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>Out of Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>Unknown</span></p><p class=half-width><label>Water Source Type:</label><span>Hydrant</span></label><p class=half-width><label>Outlets:</label><span>3</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>25 Aintree Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -63.092454276318982000,
+                    46.218497725438603000
+                ]
+            },
+            "properties": {
+                "icon": "https://storage.iamresponding.com/v2/default/markers/H2.png",
+                "name": "1610708022",
+                "total": 143,
+                "description": "<div class=header-info><h5 class=half-width></h5><span class=half-width>Out of Service</span></div><div class=info-window-content><p class=flow-rate><label>Flow rate:</label><span>Unknown</span></p><p class=half-width><label>Direction to Open:</label><span>Not Selected</span></p><p><label>Hydrant Location:</label></p><p><label>112 Greensview Drive, Stratford, Prince Edward Island, Canada</label></p><p class=full-width><label>Last Updated By: Joe Driscoll[Cross Roads Fire]</label></p><p class=hidden><span>1073742125</span><span class=marker-type>Hydrant</span></p></div>"
+            }
+        }
+    ]
+
+
+    </script>
+<style>
+    #closestHydrants li {
+        margin-bottom: 3rem;
+        /* Add any other styling you need here */
+    }
+
+    .header-info {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.header-info h5,
+.header-info span {
+    display: inline-block;
+    width: 50%;
+}
+
+.half-width {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.full-width {
+    width: 100%;
+    display: block;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.info-window-content {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+}
+
+.flow-rate label,
+p label {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Additional styling for readability */
+p {
+    margin: 5px 0;
+}
+
+span {
+    color: #555;
+}
+
+</style>
+
+
+</head>
+
+
+
+<body>
+    <h1>Closest Hydrant</h1>
+    <p>Your current location:</p>
+    <p id="location"></p>
+    <p>Closest Hydrant:</p>
+    <p id="closestHydrants"></p>
+
+    <script>
+        // Function to calculate the distance between two coordinates
+        function calculateDistance(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Earth's radius in kilometers
+            const dLat = (lat2 - lat1) * (Math.PI / 180);
+            const dLon = (lon2 - lon1) * (Math.PI / 180);
+            const a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const distance = R * c; // Distance in kilometers
+            return distance;
+        }
+
+        // Function to find the closest hydrant
+        function findClosestHydrants(userLat, userLon, numberOfHydrants = 5) {
+    let closestHydrants = [];
+
+    for (const hydrant of hydrants) {
+        const distance = calculateDistance(userLat, userLon, hydrant.geometry.coordinates[1], hydrant.geometry.coordinates[0]);
+        hydrant.distance = distance;  // Store the distance in the hydrant object for sorting
+        closestHydrants.push(hydrant);
+    }
+
+    // Sort the hydrants by the calculated distance
+    closestHydrants.sort((a, b) => a.distance - b.distance);
+
+    // Return the top 'numberOfHydrants' hydrants
+    return closestHydrants.slice(0, numberOfHydrants);
+}
+
+function getUserLocation() {
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    const userLat = position.coords.latitude;
+                    const userLon = position.coords.longitude;
+
+                    document.getElementById("location").textContent = `Latitude: ${userLat}, Longitude: ${userLon}`;
+
+                    const closestHydrants = findClosestHydrants(userLat, userLon);
+
+                    const closestHydrantsList = document.getElementById("closestHydrants");
+                    closestHydrantsList.innerHTML = ''; // Clear existing list
+
+                    if (closestHydrants.length) {
+                        closestHydrants.forEach(hydrant => {
+                            const listItem = document.createElement('li');
+                            listItem.style.marginBottom = "3rem"; // Add 3rem space below each item
+                            listItem.innerHTML = `#${hydrant.properties.name} at ${hydrant.distance.toFixed(2)} km<br>${hydrant.properties.description}`;
+                            closestHydrantsList.appendChild(listItem);
+                        });
+                    } else {
+                        closestHydrantsList.innerHTML = `No hydrants found. of ${hydrants.length}`;
+                    }
+                            
+                }
+            )}
+        }
+        // Call the function to get the user's location
+        getUserLocation();
+
+    </script>
+</body>
+</html>
