@@ -3,9 +3,9 @@
   <head>
     <title>Find Nearest Hydrant</title>
     <script>
-      window.closestHydrants = [];
-      const hydrants = [
-        {
+        window.closestHydrants = [];
+        const hydrants = [
+            {
           type: "Feature",
           geometry: {
             type: "Point",
@@ -1729,9 +1729,17 @@
       }
     </style>
     <style>
+      
+      #radarCanvas {
+        border: 1px solid black;
+      }
       #closestHydrants li {
         margin-bottom: 1rem;
-        /* Add any other styling you need here */
+      }
+      @media screen and (max-width: 600px) {
+        #closestHydrants h2 {
+          font-size: 1em; /* Smaller font size for mobile devices */
+        }
       }
 
     
@@ -1754,12 +1762,12 @@
     const userLocation = { x: canvas.width / 2, y: canvas.height / 2 };
 
     function latLonToRadarCoords(lat, lon, userLat, userLon) {
-        const latDiff = (lat - userLat) * 111320; // Convert latitude difference to meters
-        const lonDiff =
-          (lon - userLon) * 111320 * Math.cos((userLat * Math.PI) / 180); // Convert longitude difference to meters
+        // Adjust scale factor for mobile display
+        const scale = window.innerWidth < 600 ? 0.1 : 0.5;
 
-        // Optional: Scale the distances if they are too large or small for your radar view
-        const scale = 0.5; // Adjust this scale factor as needed
+        const latDiff = (lat - userLat) * 111320; // Convert latitude difference to meters
+        const lonDiff = (lon - userLon) * 111320 * Math.cos((userLat * Math.PI) / 180);
+
         const x = lonDiff * scale;
         const y = latDiff * scale;
 
