@@ -2422,7 +2422,6 @@ function getUserLocation() {
                             const listItem = document.createElement('li');
                             listItem.style.marginBottom = "3rem"; // Add 3rem space below each item
                             listItem.style.listStyleType = "none"; 
-                            listItem.style.color = "#8b0000"
                             listItem.innerHTML = `<h2  style="color: darkred;">#${hydrant.properties.name} at ${hydrant.distance.toFixed(2)} km</h2><br>${hydrant.properties.description}`;
                             closestHydrantsList.appendChild(listItem);
                         });
