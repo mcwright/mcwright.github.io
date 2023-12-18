@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Find Nearest Hydrant - build 5</title>
+    <title>Find Nearest Hydrant</title>
     <script>
-        window.closestHydrants = [];
-        const hydrants = [
-            {
+      window.closestHydrants = [];
+      const hydrants = [
+        {
           type: "Feature",
           geometry: {
             type: "Point",
@@ -1723,62 +1723,37 @@
         },
       ];
     </script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
     <style>
-      #radarCanvas {
-        border: 1px solid black;
+      #mapid {
+        height: 400px;
       }
     </style>
     <style>
-      
       #radarCanvas {
         border: 1px solid black;
       }
       #closestHydrants li {
         margin-bottom: 1rem;
       }
-      @media screen and (max-width: 600px) {
-        #closestHydrants h2 {
-          font-size: 1em; /* Smaller font size for mobile devices */
-        }
-      }
-
-    
+   
     </style>
   </head>
 
   <body>
-    <h1>Closest Hydrant</h1>
+    <h1>Closest Hydrant  - build 6</h1>
     <p>Your current location:</p>
     <p id="location"></p>
     <p>Closest Hydrant:</p>
     <p id="closestHydrants"></p>
+    <div id="mapid"></div>
 
-    <canvas id="radarCanvas" width="400" height="400"></canvas>
-    <script src="radar.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-   <script>
-    const canvas = document.getElementById("radarCanvas");
-    const ctx = canvas.getContext("2d");
-    const userLocation = { x: canvas.width / 2, y: canvas.height / 2 };
-
-    function latLonToRadarCoords(lat, lon, userLat, userLon) {
-    // Adjust scale factor for mobile display. This value may need to be fine-tuned
-    const scale = window.innerWidth < 600 ? 0.05 : 0.1; // Reduced for mobile
-
-    const latDiff = (lat - userLat) * 111320; // Convert latitude difference to meters
-    const lonDiff = (lon - userLon) * 111320 * Math.cos(userLat * Math.PI / 180);
-
-    const x = lonDiff * scale;
-    const y = latDiff * scale;
-
-    // Debugging logs
-    console.log(`User coordinates: (${userLat}, ${userLon})`);
-    console.log(`Hydrant coordinates: (${lat}, ${lon})`);
-    console.log(`Canvas coordinates: (${x}, ${y}), Scale: ${scale}`);
-
-    return { x, y };
-}
-
+    <script>
       // Function to calculate the distance between two coordinates
       function calculateDistance(lat1, lon1, lat2, lon2) {
         const R = 6371; // Earth's radius in kilometers
@@ -1794,7 +1769,6 @@
         const distance = R * c; // Distance in kilometers
         return distance;
       }
-
 
       // Function to find the closest hydrant
       function findClosestHydrants(userLat, userLon, numberOfHydrants = 5) {
@@ -1815,71 +1789,75 @@
         closestHydrants.sort((a, b) => a.distance - b.distance);
 
         // Return the top 'numberOfHydrants' hydrants
-        console.log("setting Window variarble")
-        window.closestHydrants  = closestHydrants.slice(0, numberOfHydrants)
+        console.log("setting Window variarble");
+        window.closestHydrants = closestHydrants.slice(0, numberOfHydrants);
         return closestHydrants.slice(0, numberOfHydrants);
       }
 
-    function drawRadar(userLat, userLon, hydrants) {
-      // Clear the canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      function updateHydrantList(hydrants) {
+        const closestHydrantsList = document.getElementById("closestHydrants");
+        closestHydrantsList.innerHTML = ""; // Clear existing list
 
-      // Draw user in the center
-      ctx.fillStyle = "blue";
-      ctx.beginPath();
-      ctx.arc(userLocation.x, userLocation.y, 5, 0, 2 * Math.PI);
-      ctx.fill();
-
-      // Draw hydrants
-      ctx.fillStyle = "black";
-      hydrants.forEach(hydrant => {
-        const { x, y } = latLonToRadarCoords(
-          hydrant.geometry.coordinates[1],
-          hydrant.geometry.coordinates[0],
-          userLat,
-          userLon
-        );
-        ctx.beginPath();
-        ctx.arc(userLocation.x + x, userLocation.y - y, 5, 0, 2 * Math.PI); // Adjusted to translate lat/lon to canvas x/y
-        ctx.fill();
-      });
-
-      // Draw concentric circles
-      for (let i = 50; i <= 200; i += 50) {
-        ctx.beginPath();
-        ctx.arc(userLocation.x, userLocation.y, i, 0, 2 * Math.PI);
-        ctx.stroke();
-      }
-    }
-
-    function updateHydrantList(hydrants) {
-      const closestHydrantsList = document.getElementById("closestHydrants");
-      closestHydrantsList.innerHTML = ''; // Clear existing list
-
-      hydrants.forEach(hydrant => {
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `<p class="hyrdrantInfo" ">${hydrant.distance.toFixed(2)}km => ${hydrant.properties.hydrant_location} at ${hydrant.properties.flow_rate} </p>`;
-        closestHydrantsList.appendChild(listItem);
-      });
-    }
-
-    function getUserLocation() {
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-          const userLat = position.coords.latitude;
-          const userLon = position.coords.longitude;
-          document.getElementById("location").textContent = `Latitude: ${userLat}, Longitude: ${userLon}`;
-
-          const closestHydrants = findClosestHydrants(userLat, userLon);
-          updateHydrantList(closestHydrants);
-          drawRadar(userLat, userLon, closestHydrants);
+        hydrants.forEach((hydrant) => {
+          const listItem = document.createElement("li");
+          listItem.innerHTML = `<p class="hyrdrantInfo" ">${hydrant.distance.toFixed(
+            2
+          )}km => ${hydrant.properties.hydrant_location} at ${
+            hydrant.properties.flow_rate
+          } </p>`;
+          closestHydrantsList.appendChild(listItem);
         });
-      } else {
-        document.getElementById("location").textContent = "Geolocation is not supported by your browser.";
       }
-    }
 
-    getUserLocation();
-  </script>
-</body>
+      function getUserLocation() {
+        if ("geolocation" in navigator) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            const userLat = position.coords.latitude;
+            const userLon = position.coords.longitude;
+            document.getElementById(
+              "location"
+            ).textContent = `Latitude: ${userLat}, Longitude: ${userLon}`;
+            var map = L.map("mapid").setView([userLat, userLon], 16); // Set user's location and zoom level
+
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              maxZoom: 19,
+              attribution: "© OpenStreetMap contributors",
+            }).addTo(map);
+            const closestHydrants = findClosestHydrants(userLat, userLon);
+            closestHydrants.forEach(function (hydrant) {
+              L.marker([
+                hydrant.geometry.coordinates[1],
+                hydrant.geometry.coordinates[0],
+              ])
+                .addTo(map)
+                .bindPopup(
+                  `<b>${hydrant.properties.name}</b><br>Flow rate: ${hydrant.properties.flow_rate}`
+                );
+            });
+            var userIcon = L.icon({
+              iconUrl:
+                "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+              shadowUrl:
+                "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/images/marker-shadow.png",
+              iconSize: [25, 41],
+              iconAnchor: [12, 41],
+              popupAnchor: [1, -34],
+              shadowSize: [41, 41],
+            });
+
+            var userMarker = L.marker([userLat, userLon], {
+              icon: userIcon,
+            }).addTo(map);
+            userMarker.bindPopup("You are here");
+            updateHydrantList(closestHydrants);
+          });
+        } else {
+          document.getElementById("location").textContent =
+            "Geolocation is not supported by your browser.";
+        }
+      }
+
+      getUserLocation();
+    </script>
+  </body>
 </html>
